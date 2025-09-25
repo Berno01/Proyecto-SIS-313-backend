@@ -15,21 +15,24 @@ public class RepuestoController {
     private final List<Map<String, Object>> repuestos = List.of(
             Map.of(
                     "id", 1,
-                    "nombre", "Filtro de aceite",
-                    "precio", 50.0,
-                    "stock", 25
+                    "nombre_repuesto", "Filtro de aceite",
+                    "precio_compra", 35.0,
+                    "precio_venta", 50.0,
+                    "stock_repuesto", 25
             ),
             Map.of(
                     "id", 2,
-                    "nombre", "Filtro de gasolina",
-                    "precio", 55.0,
-                    "stock", 15
+                    "nombre_repuesto", "Filtro de gasolina",
+                    "precio_compra", 35.0,
+                    "precio_venta", 50.0,
+                    "stock_repuesto", 15
             ),
             Map.of(
                     "id", 3,
-                    "nombre", "Pastillas de freno",
-                    "precio", 120.0,
-                    "stock", 8
+                    "nombre_repuesto", "Pastillas de freno",
+                    "precio_compra", 35.0,
+                    "precio_venta", 50.0,
+                    "stock_repuesto", 8
             )
     );
 
@@ -83,40 +86,35 @@ public class RepuestoController {
     @PostMapping("/venta/registrar")
     public ResponseEntity<Map<String, Object>> registrarVenta(@RequestBody Map<String, Object> datosVenta) {
         try {
-            // Extraer parámetros básicos (puedes modificar según tus necesidades)
-            Long repuestoId = Long.valueOf(datosVenta.get("repuestoId").toString());
-            int cantidad = Integer.parseInt(datosVenta.get("cantidad").toString());
-            String cliente = datosVenta.get("cliente").toString();
+            // Leer los datos generales
+            String cliente = datosVenta.get("nombre_cliente").toString();
+            Double totalVenta = Double.valueOf(datosVenta.get("total_venta").toString());
+            Object idVenta = datosVenta.get("id_venta"); // normalmente null
 
-            // Llamar a la función de validación
-            boolean validacionExitosa = validarDatos(repuestoId, cantidad);
+            // Leer detalle_venta como lista
+            List<Map<String, Object>> detalles = (List<Map<String, Object>>) datosVenta.get("detalle_venta");
 
-            if (validacionExitosa) {
-                // Validación positiva - Venta exitosa
-                return ResponseEntity.ok(Map.of(
-                        "status", "SUCCESS",
-                        "mensaje", "Venta registrada exitosamente",
-                        "codigo", 200,
-                        "datos", Map.of(
-                                "repuestoId", repuestoId,
-                                "cantidad", cantidad,
-                                "cliente", cliente,
-                                "timestamp", System.currentTimeMillis()
-                        )
-                ));
-            } else {
-                // Validación negativa - Sin inventario suficiente
-                return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of(
-                        "status", "ERROR",
-                        "mensaje", "Inventario insuficiente para completar la venta",
-                        "codigo", 400,
-                        "repuestoId", repuestoId,
-                        "cantidadSolicitada", cantidad
-                ));
+            // Ejemplo de validación recorriendo los detalles
+            for (Map<String, Object> det : detalles) {
+                Long repuestoId = Long.valueOf(det.get("id_repuesto").toString());
+                int cantidad = Integer.parseInt(det.get("cantidad").toString());
+                Double precioCompra = Double.valueOf(det.get("precio_compra").toString());
+                Double precioVenta = Double.valueOf(det.get("precio_venta").toString());
+                Double total = Double.valueOf(det.get("total").toString());
+
+                // 👉 aquí podrías validar inventario por cada repuesto
+                System.out.println("Detalle repuesto: " + repuestoId + " cantidad=" + cantidad);
             }
 
+            // Si todo OK, devolver respuesta
+            return ResponseEntity.ok(Map.of(
+                    "status", "SUCCESS",
+                    "mensaje", "Venta registrada exitosamente",
+                    "codigo", 200,
+                    "datos", datosVenta
+            ));
+
         } catch (Exception e) {
-            // Error en parámetros o procesamiento
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(Map.of(
                     "status", "ERROR",
                     "mensaje", "Error en los datos enviados: " + e.getMessage(),
@@ -124,6 +122,7 @@ public class RepuestoController {
             ));
         }
     }
+
 
     /**
      *  FUNCIÓN Ver todo el inventario (para debugging)
