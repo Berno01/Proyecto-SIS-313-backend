@@ -24,7 +24,6 @@ public class RepuestoEntity {
     private Integer stock_actual;
     private Double costo_repuesto;
     private Double precio_sugerido;
-    @Column(name = "estado_repuesto")
     private Boolean estadoRepuesto;
 
     @ManyToMany

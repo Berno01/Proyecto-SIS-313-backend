@@ -5,7 +5,7 @@ import com.sistemastarija.api_repuestos.venta.application.port.in.DeleteVentaUse
 import com.sistemastarija.api_repuestos.venta.application.port.in.FindVentaUseCase;
 import com.sistemastarija.api_repuestos.venta.application.port.in.UpdateVentaUseCase;
 import com.sistemastarija.api_repuestos.venta.domain.model.Venta;
-import com.sistemastarija.api_repuestos.venta.infrastructure.adapter.in.web.dto.VentaRequestDTO;
+import com.sistemastarija.api_repuestos.venta.infrastructure.adapter.in.web.dto.VentaDTO;
 import com.sistemastarija.api_repuestos.venta.infrastructure.adapter.in.web.mapper.VentaMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,9 +37,9 @@ public class VentaController {
     }
 
     @PostMapping
-    public ResponseEntity<Map<String, String>> registrarVenta(@RequestBody VentaRequestDTO ventaRequestDTO) {
+    public ResponseEntity<Map<String, String>> registrarVenta(@RequestBody VentaDTO ventaDTO) {
         // DTO a entidad de dominio
-        Venta venta = ventaMapper.toDomain(ventaRequestDTO);
+        Venta venta = ventaMapper.toDomain(ventaDTO);
 
         createVentaUseCase.save(venta);
 
@@ -51,9 +51,9 @@ public class VentaController {
     }
 
     @PostMapping("/update")
-    public ResponseEntity<Map<String, String>> updateVenta(@RequestBody VentaRequestDTO ventaRequestDTO) {
+    public ResponseEntity<Map<String, String>> updateVenta(@RequestBody VentaDTO ventaDTO) {
         //DTO a entidad de dominio
-        Venta venta = ventaMapper.toDomain(ventaRequestDTO);
+        Venta venta = ventaMapper.toDomain(ventaDTO);
 
         updateVentaUseCase.update(venta.getIdVenta(), venta);
 

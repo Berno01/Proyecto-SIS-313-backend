@@ -1,4 +1,4 @@
-package com.sistemastarija.api_repuestos.venta.domain.model;
+package com.sistemastarija.api_repuestos.compra.domain.model;
 
 import com.sistemastarija.api_repuestos.venta.domain.exception.RepuestoNotFoundException;
 import lombok.Getter;

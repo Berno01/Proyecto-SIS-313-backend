@@ -7,8 +7,6 @@ import com.sistemastarija.api_repuestos.repuesto.application.port.in.UpdateRepue
 import com.sistemastarija.api_repuestos.repuesto.domain.model.Repuesto;
 import com.sistemastarija.api_repuestos.repuesto.infrastructure.adapter.in.dto.RepuestoRequestDTO;
 import com.sistemastarija.api_repuestos.repuesto.infrastructure.adapter.in.mapper.RepuestoMapper;
-import com.sistemastarija.api_repuestos.venta.domain.model.Venta;
-import com.sistemastarija.api_repuestos.venta.infrastructure.adapter.in.web.dto.VentaRequestDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

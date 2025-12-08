@@ -1,4 +1,4 @@
-package com.sistemastarija.api_repuestos.venta.infrastructure.adapter.out.persistance.entity;
+package com.sistemastarija.api_repuestos.compra.infrastructure.adapter.out.persistance.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -11,7 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Entity
 @Table(name = "repuesto")
-public class VentaRepuestoEntity {
+public class RepuestoCompraEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_repuesto;

@@ -3,7 +3,7 @@ package com.sistemastarija.api_repuestos.application;
 
 import com.sistemastarija.api_repuestos.venta.application.port.out.RepuestoPersistantPort;
 import com.sistemastarija.api_repuestos.venta.application.port.out.VentaPersistantPort;
-import com.sistemastarija.api_repuestos.venta.application.service.ServicioVenta;
+import com.sistemastarija.api_repuestos.venta.application.service.VentaService;
 import com.sistemastarija.api_repuestos.venta.domain.model.DetalleVenta;
 import com.sistemastarija.api_repuestos.venta.domain.model.Repuesto;
 import com.sistemastarija.api_repuestos.venta.domain.model.Venta;
@@ -23,7 +23,7 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-public class VentaServiceTest {
+public class CompraServiceTest {
 
     @Mock
     private RepuestoPersistantPort repuestoPersistantPort;
@@ -31,7 +31,7 @@ public class VentaServiceTest {
     private VentaPersistantPort ventaPersistantPort;
 
     @InjectMocks
-    private ServicioVenta servicioVenta;
+    private VentaService ventaService;
 
     @Test
     void deberiaGuardarVentaCorrectamenteCuandoHayStock() {
@@ -50,7 +50,7 @@ public class VentaServiceTest {
 
 
         // Act
-        Venta ventaGuardada = servicioVenta.save(ventaDeEntrada);
+        Venta ventaGuardada = ventaService.save(ventaDeEntrada);
 
 
         // Verificamos los resultados
