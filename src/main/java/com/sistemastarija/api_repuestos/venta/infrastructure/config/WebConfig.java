@@ -10,9 +10,14 @@ public class WebConfig implements WebMvcConfigurer {
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
-                .allowedOriginPatterns("*") // <--- AQUÍ ESTÁ EL CAMBIO (Patterns en vez de Origins)
-                .allowedMethods("GET", "POST", "PUT", "DELETE", "OPTIONS")
+                .allowedOrigins(
+                        "http://localhost:4200",                 // Tu Angular local
+                        "https://dapper-genie-50a3c5.netlify.app/" // <--- ¡PEGA AQUÍ TU LINK DE NETLIFY!
+                )
+                .allowedMethods("GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS")
                 .allowedHeaders("*")
-                .allowCredentials(true);
+                .exposedHeaders("*")
+                .allowCredentials(true)
+                .maxAge(3600);
     }
 }
