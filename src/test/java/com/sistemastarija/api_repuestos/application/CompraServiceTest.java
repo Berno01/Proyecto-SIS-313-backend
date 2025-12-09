@@ -41,7 +41,7 @@ public class CompraServiceTest {
         LocalDateTime fechaHoraObj = LocalDateTime.parse(fechaHora, formatter);
         Repuesto repuestoExistente = new Repuesto(1, 10);
         DetalleVenta detalle = new DetalleVenta(2, 50.0, 50.00, 1, 45.8);
-        Venta ventaDeEntrada = new Venta(null, "Cliente X",fechaHoraObj, List.of(detalle));
+        Venta ventaDeEntrada = new Venta(null, "Cliente X",fechaHoraObj, List.of(detalle),1);
 
 
         // comportamiento de los mocks
