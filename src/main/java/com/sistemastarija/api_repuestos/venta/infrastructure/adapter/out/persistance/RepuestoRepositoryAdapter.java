@@ -3,7 +3,7 @@ package com.sistemastarija.api_repuestos.venta.infrastructure.adapter.out.persis
 import com.sistemastarija.api_repuestos.venta.application.port.out.RepuestoPersistantPort;
 import com.sistemastarija.api_repuestos.venta.domain.model.Repuesto;
 import com.sistemastarija.api_repuestos.venta.infrastructure.adapter.out.persistance.mapper.VentaRepuestoPersistanceMapper;
-import com.sistemastarija.api_repuestos.venta.infrastructure.adapter.out.persistance.repository.VentaRepuestoRepository;
+import com.sistemastarija.api_repuestos.venta.infrastructure.adapter.out.persistance.repository.RepuestoVentaRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -15,7 +15,7 @@ import java.util.Optional;
 public class RepuestoRepositoryAdapter implements RepuestoPersistantPort {
 
     private final VentaRepuestoPersistanceMapper mapper;
-    private final VentaRepuestoRepository repository;
+    private final RepuestoVentaRepository repository;
 
 
     @Override
@@ -32,6 +32,6 @@ public class RepuestoRepositoryAdapter implements RepuestoPersistantPort {
 
     @Override
     public List<Repuesto> findAll() {
-        return mapper.toRepuestoList(repository.findAll());
+        return mapper.toRepuestoList(repository.findAllByEstadoRepuestoTrue());
     }
 }

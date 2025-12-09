@@ -18,6 +18,8 @@ public class Repuesto {
     private Double costoRepuesto;
     private Double precioSugerido;
     private Boolean estadoRepuesto;
+    private String tagsBusqueda;
+    private Integer idSistema;
     private List<Integer> idsCategorias;
-
+    private List<Compatibilidad> compatibilidades;
 }

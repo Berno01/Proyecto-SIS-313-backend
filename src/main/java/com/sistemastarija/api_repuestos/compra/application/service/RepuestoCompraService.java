@@ -1,8 +1,8 @@
-package com.sistemastarija.api_repuestos.venta.application.service;
+package com.sistemastarija.api_repuestos.compra.application.service;
 
-import com.sistemastarija.api_repuestos.venta.application.port.in.RepuestoUseCase;
-import com.sistemastarija.api_repuestos.venta.application.port.out.RepuestoPersistantPort;
-import com.sistemastarija.api_repuestos.venta.domain.model.Repuesto;
+import com.sistemastarija.api_repuestos.compra.application.port.in.RepuestoUseCase;
+import com.sistemastarija.api_repuestos.compra.application.port.out.RepuestoPersistantPort;
+import com.sistemastarija.api_repuestos.compra.domain.model.Repuesto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +11,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class VentaRepuestoService implements RepuestoUseCase {
+public class RepuestoCompraService implements RepuestoUseCase {
 
     private final RepuestoPersistantPort persistencetPort;
 

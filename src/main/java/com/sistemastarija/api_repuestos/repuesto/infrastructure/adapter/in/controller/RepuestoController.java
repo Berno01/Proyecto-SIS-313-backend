@@ -1,14 +1,10 @@
 package com.sistemastarija.api_repuestos.repuesto.infrastructure.adapter.in.controller;
 
-import com.sistemastarija.api_repuestos.repuesto.application.port.in.CreateRepuestoUseCase;
-import com.sistemastarija.api_repuestos.repuesto.application.port.in.DeleteRepuestoUseCase;
-import com.sistemastarija.api_repuestos.repuesto.application.port.in.FindRepuestoUseCase;
-import com.sistemastarija.api_repuestos.repuesto.application.port.in.UpdateRepuestoUseCase;
+import com.sistemastarija.api_repuestos.repuesto.application.port.in.*;
 import com.sistemastarija.api_repuestos.repuesto.domain.model.Repuesto;
+import com.sistemastarija.api_repuestos.repuesto.infrastructure.adapter.in.dto.RepuestoBusquedaDTO;
 import com.sistemastarija.api_repuestos.repuesto.infrastructure.adapter.in.dto.RepuestoRequestDTO;
 import com.sistemastarija.api_repuestos.repuesto.infrastructure.adapter.in.mapper.RepuestoMapper;
-import com.sistemastarija.api_repuestos.venta.domain.model.Venta;
-import com.sistemastarija.api_repuestos.venta.infrastructure.adapter.in.web.dto.VentaRequestDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -25,13 +21,15 @@ public class RepuestoController {
     private final UpdateRepuestoUseCase updateRepuestoUseCase;
     private final DeleteRepuestoUseCase deleteRepuestoUseCase;
     private final FindRepuestoUseCase findRepuestoUseCase;
+    private final ObtenerCatalogoBusquedaUseCase obtenerCatalogoBusquedaUseCase;
     private final RepuestoMapper repuestoMapper;
 
-    public RepuestoController(CreateRepuestoUseCase createRepuestoUseCase, UpdateRepuestoUseCase updateRepuestoUseCase, DeleteRepuestoUseCase deleteRepuestoUseCase, FindRepuestoUseCase findRepuestoUseCase, RepuestoMapper repuestoMapper) {
+    public RepuestoController(CreateRepuestoUseCase createRepuestoUseCase, UpdateRepuestoUseCase updateRepuestoUseCase, DeleteRepuestoUseCase deleteRepuestoUseCase, FindRepuestoUseCase findRepuestoUseCase, ObtenerCatalogoBusquedaUseCase obtenerCatalogoBusquedaUseCase, RepuestoMapper repuestoMapper) {
         this.createRepuestoUseCase = createRepuestoUseCase;
         this.updateRepuestoUseCase = updateRepuestoUseCase;
         this.deleteRepuestoUseCase = deleteRepuestoUseCase;
         this.findRepuestoUseCase = findRepuestoUseCase;
+        this.obtenerCatalogoBusquedaUseCase = obtenerCatalogoBusquedaUseCase;
         this.repuestoMapper = repuestoMapper;
     }
 
@@ -73,5 +71,9 @@ public class RepuestoController {
         return true;
     }
 
-
+    @GetMapping("/catalogo-search")
+    public ResponseEntity<List<RepuestoBusquedaDTO>> getCatalogoBusqueda() {
+        List<RepuestoBusquedaDTO> catalogo = obtenerCatalogoBusquedaUseCase.obtenerCatalogo();
+        return ResponseEntity.ok(catalogo);
+    }
 }

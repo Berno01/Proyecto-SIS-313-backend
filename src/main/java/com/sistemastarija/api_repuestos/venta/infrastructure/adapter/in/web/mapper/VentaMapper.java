@@ -3,7 +3,7 @@ package com.sistemastarija.api_repuestos.venta.infrastructure.adapter.in.web.map
 import com.sistemastarija.api_repuestos.venta.domain.model.Venta;
 import com.sistemastarija.api_repuestos.venta.domain.model.DetalleVenta;
 import com.sistemastarija.api_repuestos.venta.infrastructure.adapter.in.web.dto.DetalleVentaDTO;
-import com.sistemastarija.api_repuestos.venta.infrastructure.adapter.in.web.dto.VentaRequestDTO;
+import com.sistemastarija.api_repuestos.venta.infrastructure.adapter.in.web.dto.VentaDTO;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 @Component
 public class VentaMapper {
 
-    public Venta toDomain(VentaRequestDTO dto) {
+    public Venta toDomain(VentaDTO dto) {
         List<DetalleVenta> detalles = dto.getDetalleVenta().stream()
                 .map(this::toDetalleVentaDomain)
                 .collect(Collectors.toList());

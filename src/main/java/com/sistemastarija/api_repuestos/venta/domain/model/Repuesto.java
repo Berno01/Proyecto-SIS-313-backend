@@ -14,10 +14,12 @@ public class Repuesto {
     private String nombreRepuesto;
     private Double costoRepuesto;
     private Double precioSugerido;
+    private Boolean estadoRepuesto;
 
     public Repuesto(Integer idRepuesto, Integer stockRepuesto) {
         this.idRepuesto = idRepuesto;
         this.stockRepuesto = stockRepuesto;
+        this.estadoRepuesto = true;
     }
 
     public boolean decreaseStockRepuesto(Integer cantidad) {

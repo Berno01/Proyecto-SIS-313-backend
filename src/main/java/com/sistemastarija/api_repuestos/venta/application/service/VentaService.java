@@ -21,7 +21,7 @@ import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
-public class ServicioVenta implements CreateVentaUseCase, UpdateVentaUseCase, FindVentaUseCase, DeleteVentaUseCase {
+public class VentaService implements CreateVentaUseCase, UpdateVentaUseCase, FindVentaUseCase, DeleteVentaUseCase {
     private final VentaPersistantPort ventaPersistantPort;
     private final RepuestoPersistantPort repuestoPersistantPort;
 

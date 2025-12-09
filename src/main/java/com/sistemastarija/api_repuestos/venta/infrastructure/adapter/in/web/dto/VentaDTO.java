@@ -10,7 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 @AllArgsConstructor
-public class VentaRequestDTO {
+public class VentaDTO {
 
 
     @JsonProperty("id_venta")
@@ -25,7 +25,7 @@ public class VentaRequestDTO {
     @JsonProperty("detalle_venta")
     private List<DetalleVentaDTO> detalleVenta;
 
-    public VentaRequestDTO() {
+    public VentaDTO() {
     }
 
 

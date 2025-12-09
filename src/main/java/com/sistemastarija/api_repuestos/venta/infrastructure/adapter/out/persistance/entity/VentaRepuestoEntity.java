@@ -19,4 +19,5 @@ public class VentaRepuestoEntity {
     private String nombre_repuesto;
     private Integer costo_repuesto;
     private Double precio_sugerido;
+    private Boolean estadoRepuesto;
 }

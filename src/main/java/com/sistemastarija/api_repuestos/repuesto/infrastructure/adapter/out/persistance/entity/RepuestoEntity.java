@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Setter
@@ -24,8 +25,14 @@ public class RepuestoEntity {
     private Integer stock_actual;
     private Double costo_repuesto;
     private Double precio_sugerido;
-    @Column(name = "estado_repuesto")
     private Boolean estadoRepuesto;
+
+    @Column(name = "tags_busqueda", columnDefinition = "TEXT")
+    private String tagsBusqueda;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_sistema")
+    private SistemaAutoEntity sistema;
 
     @ManyToMany
     @JoinTable(
@@ -34,4 +41,7 @@ public class RepuestoEntity {
             inverseJoinColumns = @JoinColumn(name = "id_categoria")
     )
     private List<CategoriaEntity> categorias;
+
+    @OneToMany(mappedBy = "repuesto", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CompatibilidadEntity> compatibilidades = new ArrayList<>();
 }
