@@ -72,3 +72,19 @@ CREATE TABLE `tiendarepuestos`.`repuesto-categoria`
     FOREIGN KEY (id_repuesto) REFERENCES repuesto(id_repuesto),
     UNIQUE KEY `idx_repuesto_categoria_unique` (`id_repuesto`, `id_categoria`)
 )
+
+CREATE TABLE `tiendarepuestos`.`usuario`
+(
+    id_usuario INT NOT NULL AUTO_INCREMENT,
+    username VARCHAR(50) NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    nombre_completo VARCHAR(100) NOT NULL,
+    rol VARCHAR(20) NOT NULL,
+    PRIMARY KEY (id_usuario),
+    UNIQUE KEY `idx_username_unique` (username)
+)
+
+-- Usuario admin por defecto (password: admin123)
+-- Hash BCrypt generado para 'admin123': $2a$10$8K1p/a0dL1H3h8MwMvTtFOazLCq7HVMTzL8JJMzQyXKaVCv4Y2Hry
+INSERT INTO `tiendarepuestos`.`usuario` (username, password, nombre_completo, rol)
+VALUES ('admin', '$2a$10$8K1p/a0dL1H3h8MwMvTtFOazLCq7HVMTzL8JJMzQyXKaVCv4Y2Hry', 'Administrador', 'ADMIN');
