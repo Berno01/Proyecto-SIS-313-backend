@@ -22,7 +22,8 @@ public class VentaMapper {
                 dto.getIdVenta(),
                 dto.getNombreCliente(),
                 LocalDateTime.now(), // Se genera automáticamente la fecha
-                detalles
+                detalles,
+                dto.getIdUsuario() // Usuario para auditoría
         );
     }
 

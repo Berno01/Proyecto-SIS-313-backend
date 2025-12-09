@@ -21,6 +21,7 @@ public interface VentaPersistanceMapper {
     @Mapping(target = "fechaVenta", source = "fecha_venta")
     @Mapping(target = "nombreCliente", source = "nombre_cliente")
     @Mapping(target = "detalleVenta", source = "detalle_venta")
+    @Mapping(target = "username", ignore = true)
     Venta toVentaModel(VentaEntity entity);
 
 

@@ -1,6 +1,7 @@
 package com.sistemastarija.api_repuestos.venta.infrastructure.adapter.out.persistance.entity;
 
 
+import com.sistemastarija.api_repuestos.common.audit.AuditEntity;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,7 +17,7 @@ import java.util.List;
 @NoArgsConstructor
 @Entity
 @Table(name = "venta")
-public class VentaEntity {
+public class VentaEntity extends AuditEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id_venta;

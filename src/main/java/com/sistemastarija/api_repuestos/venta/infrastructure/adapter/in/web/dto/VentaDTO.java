@@ -25,6 +25,9 @@ public class VentaDTO {
     @JsonProperty("detalle_venta")
     private List<DetalleVentaDTO> detalleVenta;
 
+    @JsonProperty("id_usuario")
+    private Integer idUsuario;
+
     public VentaDTO() {
     }
 
