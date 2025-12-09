@@ -25,8 +25,17 @@ public class RepuestoRequestDTO {
     private Double precioSugerido;
     @JsonProperty("estado_repuesto")
     private Boolean estadoRepuesto;
+    
+    @JsonProperty("tags_busqueda")
+    private String tagsBusqueda;
+    
+    @JsonProperty("id_sistema")
+    private Integer idSistema;
+    
     @JsonProperty("ids_categorias")
     private List<Integer> idsCategorias;
+
+    private List<CompatibilidadRequestDTO> compatibilidades;
 
     public RepuestoRequestDTO(){}
 }
