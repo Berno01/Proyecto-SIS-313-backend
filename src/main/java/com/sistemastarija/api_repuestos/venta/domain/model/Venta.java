@@ -19,12 +19,15 @@ public class Venta
     private Double descuentoTotal;
     private List<DetalleVenta> detalleVenta;
     private Boolean estadoVenta;
+    private Integer idUsuario; // ID del usuario para auditoría
+    private String username; // Username del usuario que creó/actualizó
 
-    public Venta(Integer idVenta, String nombreCliente, LocalDateTime fechaVenta, List<DetalleVenta> detalleVenta){
+    public Venta(Integer idVenta, String nombreCliente, LocalDateTime fechaVenta, List<DetalleVenta> detalleVenta, Integer idUsuario){
         this.idVenta = idVenta;
         this.nombreCliente = nombreCliente;
         this.fechaVenta = fechaVenta;
         this.detalleVenta = detalleVenta;
+        this.idUsuario = idUsuario;
         this.total = this.detalleVenta.stream().mapToDouble(DetalleVenta::getTotal).sum();
         this.descuentoTotal = this.detalleVenta.stream().mapToDouble(DetalleVenta::getDescuento).sum();
         this.estadoVenta = true;
